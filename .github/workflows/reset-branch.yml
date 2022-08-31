@@ -21,4 +21,4 @@ jobs:
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git push -v --force origin ${{ github.event.inputs.source_branch }}:refs/head/${{ github.event.inputs.dest_branch }}
+          git push -v --force origin ${{ github.event.inputs.source_branch }}:${{ github.event.inputs.dest_branch }}
