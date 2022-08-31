@@ -1,12 +1,11 @@
-name: Reset my branch X=qa-new
-
+name: Reset my branch
 on:
   workflow_dispatch:
     inputs:
       source_branch:
         description: 'Source branch'
         required: true
-        default: 'master'
+        default: 'dev'
       dest_branch:
         description: 'Destination branch'
         required: true
@@ -19,6 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
+          dest_branch=${{ github.event.inputs.dest_branch }}
+          [[ $dest_branch == "master" ]]  && echo "IF YOU KNOW WHAT YOU ARE DOING ? YOU HAVE TO DO IT MANUALLY !!" && exit 0
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git push -v --force origin ${{ github.event.inputs.source_branch }}:${{ github.event.inputs.dest_branch }}
+          git push -v --force origin ${{ github.event.inputs.source_branch }}:"$dest_branch"
