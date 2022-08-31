@@ -3,10 +3,15 @@ name: Reset my branch X=qa-new
 on:
   workflow_dispatch:
     inputs:
-      branch_name:
-        description: 'Branch to deploy'
+      source_branch:
+        description: 'Source branch'
         required: true
         default: 'master'
+      dest_branch:
+        description: 'Destination branch'
+        required: true
+        default: 'qa'
+
 
 jobs:
   select-qa-branch:
@@ -16,4 +21,4 @@ jobs:
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git push --force origin/${{ github.event.inputs.branch_name }} origin/qa-new
+          git push -v --force origin ${{ github.event.inputs.source_branch }}:refs/head/${{ github.event.inputs.dest_branch }}
