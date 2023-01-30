@@ -5,7 +5,7 @@ on:
     inputs:
       version:
         description: 'Version of X to use'
-        type: choice
+        type: string
         required: true
         default: '3.0'
         options:
