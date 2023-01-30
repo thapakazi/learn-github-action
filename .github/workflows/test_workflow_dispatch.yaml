@@ -1,0 +1,25 @@
+name: Test workflow dispatch inputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version of X to use'
+        type: choice
+        required: true
+        default: '1'
+        options:
+          - '1'
+          - '2'
+          
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print version info
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+        run: |
+          echo $VERSION
+          
