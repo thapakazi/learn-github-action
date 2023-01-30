@@ -7,10 +7,10 @@ on:
         description: 'Version of X to use'
         type: choice
         required: true
-        default: '1'
+        default: '3.0'
         options:
-          - '1'
-          - '2'
+          - '2.6'
+          - '3.0'
           
 jobs:
   build:
@@ -20,6 +20,11 @@ jobs:
       - name: Print version info
         env:
           VERSION: ${{ github.event.inputs.version }}
+          REGISTRY: ghcr.io
+          REPOSITORY: learn-github-action
         run: |
-          echo $VERSION
+          docker build \
+              -t ghcr.io/${{ github.repository}}:$VERSION \
+              --build-arg ALPINE_VERSION=$VERSION \
+              .
           
