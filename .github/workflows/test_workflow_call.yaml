@@ -1,0 +1,10 @@
+name: Prebuild Steps
+
+on:
+  workflow_call:
+
+jobs:
+  test-workflow:
+    runs-on: ubuntu-latest
+    steps:
+        - run: echo ${{ github.repository }}

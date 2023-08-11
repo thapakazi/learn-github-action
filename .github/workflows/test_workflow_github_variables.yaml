@@ -1,0 +1,11 @@
+name: CI/CD
+env:
+  THIS: "that"
+
+on:
+  push:
+
+jobs:
+  test_workflow_variables:
+    uses: thapakazi/github-actions-for-ci/.github/workflows/test_workflow_call.yaml@main
+  secrets: inherit
