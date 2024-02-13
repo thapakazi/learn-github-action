@@ -1,0 +1,32 @@
+name: Create Pull Request on Changes to Preview
+
+on:
+  push:
+    branches:
+      - preview
+
+jobs:
+  create_pull_request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update dev with changes from preview
+          title: '[AUTO-PR] Update dev with latest preview changes'
+          body: |
+            Automated pull request to update the dev branch with the latest changes from preview.
+          branch: preview
+          base: master
+          labels: |
+            automated pr
+          reviewers: |
+            thapakazi
+          #team_reviewers: |
+          #  team1
+          #  team2
+          #assignees: user1,user2
