@@ -27,4 +27,4 @@ with:
 
 ### addition
 reset branch options
-auto create pull request if pushed to preview branch
+auto create pull request if pushed to preview branch <- trigger
