@@ -23,7 +23,6 @@ jobs:
           title: '[AUTO-PR] Update dev with latest preview changes'
           body: |
             Automated pull request to update the dev branch with the latest changes from preview.
-          branch: new-changes 
           base: master
           labels: |
             automated pr
