@@ -11,7 +11,10 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
-      
+
+      - name: Make changes to pull request
+        run: date +%s > date.txt
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
@@ -20,8 +23,7 @@ jobs:
           title: '[AUTO-PR] Update dev with latest preview changes'
           body: |
             Automated pull request to update the dev branch with the latest changes from preview.
-          branch: hello
-          base: master
+          branch: new-changes 
           labels: |
             automated pr
           reviewers: |
