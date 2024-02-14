@@ -11,21 +11,15 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
+
+      - name: Setup GitHub CLI
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
       
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Update dev with changes from preview
-          title: '[AUTO-PR] Update dev with latest preview changes'
-          body: |
-            Automated pull request to update the dev branch with the latest changes from preview.
-          branch: master
-          labels: |
-            automated pr
-          reviewers: |
-            thapakazi
-          #team_reviewers: |
-          #  team1
-          #  team2
-          #assignees: user1,user2
+        run: |
+          gh auth setup-git
+          gh pr create --base master --head preview --title "Merge Preview into Master" --body "This is an automated PR to merge Preview changes into Dev."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
