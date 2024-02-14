@@ -20,8 +20,9 @@ jobs:
           title: '[AUTO-PR] Update dev with latest preview changes'
           body: |
             Automated pull request to update the dev branch with the latest changes from preview.
+          base: master
           labels: |
-            automated pr test
+            automated pr
           reviewers: |
             thapakazi
           #team_reviewers: |
